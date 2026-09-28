@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maqueta Compra y Envío</title>
+<style>
+:root{
+  --bg:#f2f4f7; --card:#ffffff; --ink:#1c2330; --muted:#5d6878; --line:#dde2ea;
+  --accent:#1f5fbf; --accent-ink:#ffffff; --deal:#c4521f; --ok:#1d7a4a; --soft:#e8eef8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#12161d; --card:#1b212b; --ink:#e7ebf1; --muted:#9aa5b5; --line:#2c3441;
+    --accent:#6ea0ee; --accent-ink:#0c1320; --deal:#f08a57; --ok:#5cc28c; --soft:#222c3b;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#12161d; --card:#1b212b; --ink:#e7ebf1; --muted:#9aa5b5; --line:#2c3441;
+  --accent:#6ea0ee; --accent-ink:#0c1320; --deal:#f08a57; --ok:#5cc28c; --soft:#222c3b;
+}
+*{box-sizing:border-box}img{max-width:100%}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:0 16px}
+.wrap{max-width:960px;margin:0 auto;padding-block:16px 48px;display:flex;flex-direction:column;gap:16px}
+.aviso{font-size:13px;color:var(--muted);background:var(--soft);border-radius:8px;padding:8px 12px}
+header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+header b{font-size:18px}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 12px}
+button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button.on{border-color:var(--accent);color:var(--accent);font-weight:600}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input,select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.buscar{display:flex;gap:8px;flex-wrap:wrap}
+.buscar input{flex:1;min-width:0}
+.chips{display:flex;gap:6px;flex-wrap:wrap;font-size:13px;color:var(--muted);align-items:center}
+.chips button{padding:4px 10px;font-size:13px}
+h2{font-size:17px;margin:4px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px;text-align:left}
+.prod img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:6px}
+.prod .t{font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.precio{font-weight:700;font-variant-numeric:tabular-nums}
+.antes{color:var(--muted);text-decoration:line-through;font-weight:400;font-size:13px;margin-left:4px}
+.badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--deal);border-radius:4px;padding:1px 6px}
+.estrellas{font-size:12px;color:var(--muted)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.detalle{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:16px}
+.detalle img{width:100%;background:#fff;border-radius:8px}
+@media (max-width:560px){.detalle{grid-template-columns:1fr}.detalle img{max-width:220px}}
+.fila{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums}
+.fila.total{font-weight:700;font-size:17px;border-top:1px solid var(--line);padding-top:8px}
+.muted{color:var(--muted);font-size:13px}
+.agencias{display:flex;flex-direction:column;gap:8px}
+.ag{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:10px;cursor:pointer}
+.ag.sel{border-color:var(--accent);background:var(--soft)}
+.ag .n{font-weight:600}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.item{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center}
+.item img{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:6px}
+.pasos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.pasos li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding-bottom:14px;position:relative}
+.pasos li::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid var(--line);background:var(--card);margin-top:3px}
+.pasos li.hecho::before{background:var(--ok);border-color:var(--ok)}
+.pasos li.ahora::before{background:var(--accent);border-color:var(--accent)}
+.pasos li:not(:last-child)::after{content:"";position:absolute;left:8px;top:21px;bottom:0;width:2px;background:var(--line)}
+.pasos small{display:block;color:var(--muted)}
+.carrito-n{background:var(--deal);color:#fff;border-radius:10px;padding:0 6px;font-size:12px;margin-left:4px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="aviso">Maqueta de prueba. Productos y precios reales de Amazon traídos el 28-sep-2026. Las tarifas de agencias son las que publican en su web. Delivery, cargo de servicio y seguimiento son de ejemplo. Nada se cobra.</div>
+  <header>
+    <b>Compra y envío</b>
+    <nav>
+      <button id="nav-tienda" class="on" type="button">Tienda</button>
+      <button id="nav-carrito" type="button">Carrito<span id="cn" class="carrito-n" hidden></span></button>
+      <button id="nav-pedido" type="button">Mi pedido</button>
+      <button id="tema" type="button">Tema claro</button>
+    </nav>
+  </header>
+
+  <section id="v-tienda" class="wrap" style="padding:0">
+    <div class="opts">
+      <button id="t-amazon" class="on" type="button">Amazon</button>
+      <button id="t-ebay" type="button">eBay</button>
+    </div>
+    <div id="ebay-msg" class="aviso" hidden>eBay está en revisión. Cuando aprueben la cuenta de desarrollador, su catálogo aparece aquí igual que Amazon.</div>
+    <div id="amazon-box" style="display:flex;flex-direction:column;gap:16px">
+      <form class="buscar" id="f-buscar">
+        <input id="q" placeholder="Buscar en Amazon" autocomplete="off">
+        <button class="pri" type="submit">Buscar</button>
+      </form>
+      <div class="chips">En esta maqueta hay cargadas estas búsquedas:
+        <button type="button" data-q="audifonos">Audífonos</button>
+        <button type="button" data-q="tenis">Tenis Nike</button>
+        <button type="button" data-q="laptop">Laptops</button>
+      </div>
+      <div id="resultados"><h2 id="res-t">Resultados de Amazon: Audífonos</h2><div class="grid" id="res-g"><button class="prod" type="button" data-asin="B0HJB69GJL"><img src="https://m.media-amazon.com/images/I/618C8GA55KL._AC_SL300_.jpg" alt=""><span class="t">Apple AirPods 5 Wireless Earbuds</span><span class="precio">US$129.00</span><span class="estrellas">★ 4.2 (32)</span></button><button class="prod" type="button" data-asin="B0FQFB8FMG"><img src="https://m.media-amazon.com/images/I/61solmQSSlL._AC_SL300_.jpg" alt=""><span class="t">Apple AirPods Pro 3 Wireless Earbuds with Active Noise Cancellation</span><span class="precio">US$234.00</span><span class="estrellas">★ 4.4 (15,656)</span></button><button class="prod" type="button" data-asin="B0HJB76H2V"><img src="https://m.media-amazon.com/images/I/61UysjAXuXL._AC_SL300_.jpg" alt=""><span class="t">Apple AirPods 5 with Wireless Charging Case</span><span class="precio">US$149.00</span><span class="estrellas">★ 4.5 (32)</span></button><button class="prod" type="button" data-asin="B0B844T634"><img src="https://m.media-amazon.com/images/I/41hofkZHlvL._AC_SL300_.jpg" alt=""><span class="t">Amazon Renewed AirPods Pro Wireless Earbuds with MagSafe Charging Case (Renewed)</span><span class="precio">US$102.98</span><span class="estrellas">★ 3.4 (5,092)</span></button><button class="prod" type="button" data-asin="B07SKLLYTW"><img src="https://m.media-amazon.com/images/I/41XjE57VLvL._AC_SL300_.jpg" alt=""><span class="t">Amazon Renewed AirPods 2 with Charging Case - White (Renewed)</span><span class="precio">US$82.10</span><span class="estrellas">★ 3.7 (19,700)</span></button><button class="prod" type="button" data-asin="B0DJMFS75S"><img src="https://m.media-amazon.com/images/I/41JfdFBHleL._AC_SL300_.jpg" alt=""><span class="t">Amazon Renewed Airpods 4 (Renewed)</span><span class="precio">US$97.99</span><span class="estrellas">★ 3.8 (1,229)</span></button><button class="prod" type="button" data-asin="B0FRB8FXK5"><img src="https://m.media-amazon.com/images/I/61solmQSSlL._AC_SL300_.jpg" alt=""><span class="t">Amazon Renewed Apple AirPods Pro (3nd Generation) (Renewed)</span><span class="precio">US$189.00</span><span class="estrellas">★ 4.2 (273)</span></button><button class="prod" type="button" data-asin="B0C2WD567R"><img src="https://m.media-amazon.com/images/I/41cd3IYIVZL._AC_SL300_.jpg" alt=""><span class="t">Beats Studio Buds + | True Wireless Noise Cancelling Earbuds, Enhanced Apple &amp; Android Compatibility, Built-in Microphone, Sweat Resistant Bluetooth Headphones, Spatial Audio - Ivory</span><span class="precio">US$99.95</span><span class="estrellas">★ 3.9 (7,828)</span></button></div></div>
+      <div><h2>Ofertas de hoy en Amazon</h2><div class="grid" id="ofertas"><button class="prod" type="button" data-asin="B09B94RL1R"><img src="https://m.media-amazon.com/images/I/71S9u9cakLL.jpg" alt=""><span class="badge">-50%</span><span class="t">Amazon Echo Dot (newest model) - Vibrant sounding speaker, Designed for Alexa+, Great for bedrooms, dining rooms and offices, Glacier White</span><span class="precio">US$39.99<span class="antes">US$79.99</span></span><span class="estrellas"></span></button><button class="prod" type="button" data-asin="B0G2D1R15Q"><img src="https://m.media-amazon.com/images/I/51kY6VkfPeL.jpg" alt=""><span class="badge">-60%</span><span class="t">Ring Battery Doorbell 2K (newest model) Retinal 2K with wide-angle video, up to 6x Enhanced Zoom, Two-Way Talk, and Built-In Battery, Matte Mocha</span><span class="precio">US$39.99<span class="antes">US$99.99</span></span><span class="estrellas"></span></button><button class="prod" type="button" data-asin="B0DC91H3JK"><img src="https://m.media-amazon.com/images/I/51Aqp1X3LzL.jpg" alt=""><span class="badge">-40%</span><span class="t">Amazon Echo Show 11 (newest model), Vibrant Full-HD 11&quot; display with more viewing area and spatial audio, Designed for Alexa+, Graphite</span><span class="precio">US$149.99<span class="antes">US$249.99</span></span><span class="estrellas"></span></button><button class="prod" type="button" data-asin="B00CH9QWOU"><img src="https://m.media-amazon.com/images/I/71BvCt6eAFL.jpg" alt=""><span class="badge">-28%</span><span class="t">Breville BES870XL Barista Express Espresso Machine, Brushed Stainless Steel | Craft café-quality espresso shots, lattes and cappuccinos at home with this manual coffee maker with built-in grinder</span><span class="precio">US$499.95<span class="antes">US$689.99</span></span><span class="estrellas"></span></button><button class="prod" type="button" data-asin="B09B2QTGFY"><img src="https://m.media-amazon.com/images/I/61DPOznwayL.jpg" alt=""><span class="badge">-40%</span><span class="t">Amazon Echo Show 5 (newest model), Smart display, Designed for Alexa+, 2x the bass and clearer sound, Glacier White</span><span class="precio">US$59.99<span class="antes">US$99.99</span></span><span class="estrellas"></span></button><button class="prod" type="button" data-asin="B0H34W2MS8"><img src="https://m.media-amazon.com/images/I/71xIngBv5oL.jpg" alt=""><span class="badge">-57%</span><span class="t">iRobot Roomba 115X Combo Robot Vacuum &amp; Mop with AutoEmpty Dock, 15,000Pa, Self-Empties for 90 Days, Intense Power-Lifting Suction, LiDAR Navigation, Multiple Cleaning Modes, Avoids Mopping Carpet</span><span class="precio">US$199.99<span class="antes">US$469.99</span></span><span class="estrellas"></span></button><button class="prod" type="button" data-asin="B0GVTPKJVT"><img src="https://m.media-amazon.com/images/I/71ZvPIpKktL.jpg" alt=""><span class="badge">-53%</span><span class="t">Amazon Fire HD 10 tablet, built for relaxation, 10.1&quot; vibrant Full HD screen, octa-core processor, 4 GB RAM, 32 GB, Black</span><span class="precio">US$72.99<span class="antes">US$154.99</span></span><span class="estrellas"></span></button><button class="prod" type="button" data-asin="B0CKYZPPMJ"><img src="https://m.media-amazon.com/images/I/81-u3-kDlpL.jpg" alt=""><span class="badge">-37%</span><span class="t">Zinus Memory Foam 8 Inch Green Tea Mattress, Twin | Pressure-Relieving Comfort &amp; Full-Body Support, Naturally Fresh, CertiPUR-US &amp; OEKO-TEX Certified Safe Materials</span><span class="precio">US$87.00<span class="antes">US$138.99</span></span><span class="estrellas"></span></button></div></div>
+    </div>
+  </section>
+
+  <section id="v-producto" hidden></section>
+  <section id="v-carrito" hidden></section>
+  <section id="v-pedido" hidden></section>
+</div>
+
+<script>
+const D = {"audifonos": [{"asin": "B0HJB69GJL", "t": "Apple AirPods 5 Wireless Earbuds", "p": 129, "img": "https://m.media-amazon.com/images/I/618C8GA55KL._AC_SL300_.jpg", "r": 4.2, "n": 32, "prime": false, "lb": 1}, {"asin": "B0FQFB8FMG", "t": "Apple AirPods Pro 3 Wireless Earbuds with Active Noise Cancellation", "p": 234, "img": "https://m.media-amazon.com/images/I/61solmQSSlL._AC_SL300_.jpg", "r": 4.4, "n": 15656, "prime": false, "lb": 1}, {"asin": "B0HJB76H2V", "t": "Apple AirPods 5 with Wireless Charging Case", "p": 149, "img": "https://m.media-amazon.com/images/I/61UysjAXuXL._AC_SL300_.jpg", "r": 4.5, "n": 32, "prime": false, "lb": 1}, {"asin": "B0B844T634", "t": "Amazon Renewed AirPods Pro Wireless Earbuds with MagSafe Charging Case (Renewed)", "p": 102.98, "img": "https://m.media-amazon.com/images/I/41hofkZHlvL._AC_SL300_.jpg", "r": 3.4, "n": 5092, "prime": false, "lb": 1}, {"asin": "B07SKLLYTW", "t": "Amazon Renewed AirPods 2 with Charging Case - White (Renewed)", "p": 82.1, "img": "https://m.media-amazon.com/images/I/41XjE57VLvL._AC_SL300_.jpg", "r": 3.7, "n": 19700, "prime": false, "lb": 1}, {"asin": "B0DJMFS75S", "t": "Amazon Renewed Airpods 4 (Renewed)", "p": 97.99, "img": "https://m.media-amazon.com/images/I/41JfdFBHleL._AC_SL300_.jpg", "r": 3.8, "n": 1229, "prime": false, "lb": 1}, {"asin": "B0FRB8FXK5", "t": "Amazon Renewed Apple AirPods Pro (3nd Generation) (Renewed)", "p": 189, "img": "https://m.media-amazon.com/images/I/61solmQSSlL._AC_SL300_.jpg", "r": 4.2, "n": 273, "prime": false, "lb": 1}, {"asin": "B0C2WD567R", "t": "Beats Studio Buds + | True Wireless Noise Cancelling Earbuds, Enhanced Apple & Android Compatibility, Built-in Microphone, Sweat Resistant Bluetooth Headphones, Spatial Audio - Ivory", "p": 99.95, "img": "https://m.media-amazon.com/images/I/41cd3IYIVZL._AC_SL300_.jpg", "r": 3.9, "n": 7828, "prime": false, "lb": 1}], "tenis": [{"asin": "B0DYKZ4JKR", "t": "Nike Men's Run Defy Road Running Shoes", "p": 55.97, "img": "https://m.media-amazon.com/images/I/61uGzRfKZAL._AC_SL300_.jpg", "r": 4.6, "n": 2689, "prime": false, "lb": 3}, {"asin": "B0G2RGHGG8", "t": "Nike Men's Revolution 8 Road Running Shoes", "p": 75, "img": "https://m.media-amazon.com/images/I/71Z5MzObRUL._AC_SL300_.jpg", "r": 4.4, "n": 5379, "prime": false, "lb": 3}, {"asin": "B0G2RLSSRN", "t": "Nike Men's Run Defy Road Running Shoes", "p": 70, "img": "https://m.media-amazon.com/images/I/710QlbXcRuL._AC_SL300_.jpg", "r": 4.6, "n": 2689, "prime": false, "lb": 3}, {"asin": "B0DJGBZNPH", "t": "Nike Men's Journey Run Road Running Shoes", "p": 95, "img": "https://m.media-amazon.com/images/I/61meQN40XEL._AC_SL300_.jpg", "r": 4.6, "n": 858, "prime": false, "lb": 3}, {"asin": "B0DZWG1TQC", "t": "Nike Men's Run Defy Road Running Shoes", "p": 54.99, "img": "https://m.media-amazon.com/images/I/715uBJVy9EL._AC_SL300_.jpg", "r": 4.6, "n": 2689, "prime": false, "lb": 3}, {"asin": "B0DPHYF3SH", "t": "Nike Men's Revolution 8 Road Running Shoes", "p": 63.75, "img": "https://m.media-amazon.com/images/I/61LWV7ZPPZL._AC_SL300_.jpg", "r": 4.4, "n": 5379, "prime": false, "lb": 3}, {"asin": "B004LBKF2M", "t": "Nike Men's Air Monarch IV Training/Workout Shoes", "p": 68, "img": "https://m.media-amazon.com/images/I/61DnNHaXrVL._AC_SL300_.jpg", "r": 4.4, "n": 31860, "prime": false, "lb": 3}, {"asin": "B0DPHXKMHV", "t": "Nike Men's Revolution 8 Road Running Shoes", "p": 56.25, "img": "https://m.media-amazon.com/images/I/61+4HuCd9yL._AC_SL300_.jpg", "r": 4.4, "n": 5379, "prime": false, "lb": 3}], "laptop": [{"asin": "B0GR6KJ72L", "t": "Apple 2026 MacBook Neo 13-inch Laptop with A18 Pro chip: Built for AI and Apple Intelligence, Liquid Retina Display, 8GB Unified Memory, 256GB SSD Storage, 1080p FaceTime HD Camera; Blush", "p": 699, "img": "https://m.media-amazon.com/images/I/61MxIxzYvUL._AC_SL300_.jpg", "r": 4.6, "n": 1439, "prime": false, "lb": 7}, {"asin": "B0H94LG15F", "t": "15.6'' AI Laptop with Office 365 12GB RAM 256GB SSD Win 11 Laptops", "p": 329.99, "img": "https://m.media-amazon.com/images/I/714TSHAAQrL._AC_SL300_.jpg", "r": 4.3, "n": 2370, "prime": false, "lb": 7}, {"asin": "B0HF7WTGSR", "t": "Lenovo Business 15.6\" FHD Laptop, Intel Processor, 8GB DDR5, 128GB Storage", "p": 429.99, "img": "https://m.media-amazon.com/images/I/71yWVyjfpJL._AC_SL300_.jpg", "r": 4.6, "n": 735, "prime": false, "lb": 7}, {"asin": "B0GR1JTFP8", "t": "Apple 2026 MacBook Air 13-inch Laptop with M5 chip: Built for AI, 13.6-inch Liquid Retina Display, 16GB Unified Memory, 512GB SSD, 12MP Center Stage Camera, Touch ID, Wi-Fi 7; Midnight", "p": 1234, "img": "https://m.media-amazon.com/images/I/71pkfQGcMKL._AC_SL300_.jpg", "r": 4.7, "n": 1145, "prime": false, "lb": 7}, {"asin": "B0HHRDJM2F", "t": "Lenovo Yoga 7i 2-in-1 Touchscreen Laptop, Ultra 7 355, 24GB RAM 1TB SSD", "p": 1599.98, "img": "https://m.media-amazon.com/images/I/71fgXd7Ww1L._AC_SL300_.jpg", "r": 5, "n": 9, "prime": false, "lb": 7}, {"asin": "B0FWD623D1", "t": "Apple 2025 MacBook Pro Laptop with Apple M5 chip with 10‑core CPU and 10‑core GPU: Built for AI, 14.2-inch Liquid Retina XDR Display, 16GB Unified Memory, 1TB SSD Storage; Space Black", "p": 1839, "img": "https://m.media-amazon.com/images/I/6112T6g2P-L._AC_SL300_.jpg", "r": 4.7, "n": 304, "prime": false, "lb": 7}, {"asin": "B0GTQ6BVRJ", "t": "Lenovo 15.6\" FHD Laptop, 8GB LPDDR5, 128GB SSD, 500GB Ex HDD, Microsoft 365", "p": 459.99, "img": "https://m.media-amazon.com/images/I/81Ue6Z4cW6L._AC_SL300_.jpg", "r": 4.6, "n": 21, "prime": false, "lb": 7}, {"asin": "B0GRVFY42Q", "t": "HP 14\" Laptop 2026 Edition, Intel Processor, 4GB RAM, 128GB Storage", "p": 319.99, "img": "https://m.media-amazon.com/images/I/71Mu7nDsXeL._AC_SL300_.jpg", "r": 4.1, "n": 987, "prime": false, "lb": 7}], "ofertas": [{"asin": "B09B94RL1R", "t": "Amazon Echo Dot (newest model) - Vibrant sounding speaker, Designed for Alexa+, Great for bedrooms, dining rooms and offices, Glacier White", "p": 39.99, "antes": 79.99, "pct": 50, "fin": "2026-10-08T06:59:59.000Z", "img": "https://m.media-amazon.com/images/I/71S9u9cakLL.jpg", "r": null, "n": null, "prime": false, "lb": 2}, {"asin": "B0G2D1R15Q", "t": "Ring Battery Doorbell 2K (newest model) Retinal 2K with wide-angle video, up to 6x Enhanced Zoom, Two-Way Talk, and Built-In Battery, Matte Mocha", "p": 39.99, "antes": 99.99, "pct": 60, "fin": "2026-10-08T06:59:59.000Z", "img": "https://m.media-amazon.com/images/I/51kY6VkfPeL.jpg", "r": null, "n": null, "prime": false, "lb": 2}, {"asin": "B0DC91H3JK", "t": "Amazon Echo Show 11 (newest model), Vibrant Full-HD 11\" display with more viewing area and spatial audio, Designed for Alexa+, Graphite", "p": 149.99, "antes": 249.99, "pct": 40, "fin": "2026-10-08T06:59:59.000Z", "img": "https://m.media-amazon.com/images/I/51Aqp1X3LzL.jpg", "r": null, "n": null, "prime": false, "lb": 2}, {"asin": "B00CH9QWOU", "t": "Breville BES870XL Barista Express Espresso Machine, Brushed Stainless Steel | Craft café-quality espresso shots, lattes and cappuccinos at home with this manual coffee maker with built-in grinder", "p": 499.95, "antes": 689.99, "pct": 28, "fin": "2026-10-13T06:59:59.000Z", "img": "https://m.media-amazon.com/images/I/71BvCt6eAFL.jpg", "r": null, "n": null, "prime": false, "lb": 2}, {"asin": "B09B2QTGFY", "t": "Amazon Echo Show 5 (newest model), Smart display, Designed for Alexa+, 2x the bass and clearer sound, Glacier White", "p": 59.99, "antes": 99.99, "pct": 40, "fin": "2026-10-08T06:55:00.000Z", "img": "https://m.media-amazon.com/images/I/61DPOznwayL.jpg", "r": null, "n": null, "prime": false, "lb": 2}, {"asin": "B0H34W2MS8", "t": "iRobot Roomba 115X Combo Robot Vacuum & Mop with AutoEmpty Dock, 15,000Pa, Self-Empties for 90 Days, Intense Power-Lifting Suction, LiDAR Navigation, Multiple Cleaning Modes, Avoids Mopping Carpet", "p": 199.99, "antes": 469.99, "pct": 57, "fin": "2026-10-08T06:59:59.000Z", "img": "https://m.media-amazon.com/images/I/71xIngBv5oL.jpg", "r": null, "n": null, "prime": false, "lb": 2}, {"asin": "B0GVTPKJVT", "t": "Amazon Fire HD 10 tablet, built for relaxation, 10.1\" vibrant Full HD screen, octa-core processor, 4 GB RAM, 32 GB, Black", "p": 72.99, "antes": 154.99, "pct": 53, "fin": "2026-10-08T06:59:59.000Z", "img": "https://m.media-amazon.com/images/I/71ZvPIpKktL.jpg", "r": null, "n": null, "prime": false, "lb": 2}, {"asin": "B0CKYZPPMJ", "t": "Zinus Memory Foam 8 Inch Green Tea Mattress, Twin | Pressure-Relieving Comfort & Full-Body Support, Naturally Fresh, CertiPUR-US & OEKO-TEX Certified Safe Materials", "p": 87, "antes": 138.99, "pct": 37, "fin": "2026-10-08T06:59:59.000Z", "img": "https://m.media-amazon.com/images/I/81-u3-kDlpL.jpg", "r": null, "n": null, "prime": false, "lb": 2}]};
+const AGENCIAS = [
+  {n:"Pinolero Box", a:7.00, m:3.00, ta:"3 días hábiles", tm:"15 días hábiles"},
+  {n:"Bahía Nica", a:7.00, m:2.50, ta:"1 a 3 días", tm:"12 a 30 días hábiles"},
+  {n:"Encarga Nicaragua", a:7.50, m:3.00, ta:"2 a 4 días hábiles", tm:"12 a 15 días hábiles"},
+  {n:"Envíos Express Nicaragua", a:7.50, m:3.00, ta:"3 días hábiles", tm:"15 días hábiles"},
+  {n:"Trade Logistics", a:7.50, m:3.50, ta:"2 a 3 días", tm:"15 a 18 días"},
+  {n:"Envíos para Nicaragua", a:7.50, m:3.50, ta:"3 a 5 días", tm:"3 a 4 semanas"},
+  {n:"MiCargo Nicaragua", a:7.51, m:3.55, ta:"2 a 4 días hábiles", tm:"14 a 21 días hábiles"},
+  {n:"JetBox Nicaragua", a:8.00, m:4.50, ta:"2 a 3 días", tm:"unos 15 días"},
+];
+const ZONAS = [["Managua",3.50],["Ciudad Sandino, Tipitapa, Nindirí",4.50],["León, Granada, Masaya",6.00],["Otros departamentos",8.00]];
+const CATEG = {audifonos:"Audífonos", tenis:"Tenis Nike", laptop:"Laptops"};
+const TODOS = {}; Object.values(D).flat().forEach(p => TODOS[p.asin] = p);
+
+let carrito = []; // {asin, c}
+let st = {ag:0, modo:"a", entrega:"retiro", zona:0};
+
+const $ = id => document.getElementById(id);
+const usd = v => "US$" + v.toFixed(2);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const estrellas = p => p.r ? `★ ${p.r} · ${(p.n||0).toLocaleString("es-NI")} reseñas en Amazon` : "Sin calificación";
+
+function ver(v){
+  ["tienda","producto","carrito","pedido"].forEach(x => $("v-"+x).hidden = x !== v);
+  ["tienda","carrito","pedido"].forEach(x => $("nav-"+x).classList.toggle("on", x===v || (v==="producto" && x==="tienda")));
+  window.scrollTo(0,0);
+}
+function tarjeta(p){
+  const oferta = p.antes ? `<span class="antes">${usd(p.antes)}</span>` : "";
+  const badge = p.pct ? `<span class="badge">-${p.pct}%</span>` : "";
+  return `<button class="prod" type="button" data-asin="${p.asin}">
+    <img src="${p.img}" alt="">
+    ${badge}
+    <span class="t">${esc(p.t)}</span>
+    <span class="precio">${usd(p.p)}${oferta}</span>
+    <span class="estrellas">${p.r ? "★ "+p.r+" ("+(p.n||0).toLocaleString("es-NI")+")" : ""}</span>
+  </button>`;
+}
+function pintarGrid(el, lista){ el.innerHTML = lista.map(tarjeta).join(""); }
+
+function buscar(clave){
+  const k = clave.toLowerCase();
+  const key = Object.keys(CATEG).find(c => k.includes(c) || CATEG[c].toLowerCase().includes(k) || (c==="audifonos" && /aud|airpod|head|ear/.test(k)) || (c==="tenis" && /nike|zapat|shoe/.test(k)) || (c==="laptop" && /lap|compu/.test(k)));
+  $("resultados").hidden = false;
+  if(!key){ $("res-t").textContent = `No hay resultados cargados para "${clave}". Probá con audífonos, tenis o laptop.`; $("res-g").innerHTML=""; return; }
+  $("res-t").textContent = `Resultados de Amazon: ${CATEG[key]}`;
+  pintarGrid($("res-g"), D[key]);
+}
+
+function abrir(asin){
+  const p = TODOS[asin];
+  const fin = p.fin ? `<div class="muted">La oferta termina el ${new Date(p.fin).toLocaleDateString("es-NI",{day:"numeric",month:"long"})}</div>` : "";
+  $("v-producto").innerHTML = `<div class="panel">
+    <button type="button" id="volver" style="align-self:flex-start">← Volver</button>
+    <div class="detalle">
+      <img src="${p.img}" alt="">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div>${esc(p.t)}</div>
+        <div class="estrellas">${estrellas(p)}</div>
+        <div class="precio" style="font-size:22px">${usd(p.p)} ${p.antes?`<span class="antes">${usd(p.antes)}</span>`:""}</div>
+        ${fin}
+        <div class="muted">Mismo precio que en Amazon. Peso estimado para el envío: <b>${p.lb} lb</b> (con caja).</div>
+        <label class="muted">Cantidad <select id="cant">${[1,2,3,4,5].map(n=>`<option>${n}</option>`).join("")}</select></label>
+        <button class="pri" type="button" id="agregar">Agregar al carrito</button>
+      </div>
+    </div></div>`;
+  $("volver").onclick = () => ver("tienda");
+  $("agregar").onclick = () => {
+    const c = +$("cant").value, ya = carrito.find(i => i.asin===asin);
+    ya ? ya.c += c : carrito.push({asin, c});
+    contar(); pintarCarrito(); ver("carrito");
+  };
+  ver("producto");
+}
+function contar(){ const n = carrito.reduce((s,i)=>s+i.c,0); $("cn").hidden = !n; $("cn").textContent = n; }
+
+function calcular(){
+  const producto = carrito.reduce((s,i)=>s+TODOS[i.asin].p*i.c,0);
+  const libras = Math.max(1, Math.ceil(carrito.reduce((s,i)=>s+TODOS[i.asin].lb*i.c,0)));
+  const ag = AGENCIAS[st.ag];
+  const flete = libras * (st.modo==="a" ? ag.a : ag.m);
+  const servicio = producto ? Math.max(5, producto*0.07) : 0;
+  const delivery = st.entrega==="delivery" ? ZONAS[st.zona][1] : 0;
+  return {producto, libras, flete, servicio, delivery, total: producto+flete+servicio+delivery};
+}
+
+function pintarCarrito(){
+  const v = $("v-carrito");
+  if(!carrito.length){ v.innerHTML = `<div class="panel"><h2>Tu carrito está vacío</h2><button type="button" class="pri" id="ir-t" style="align-self:flex-start">Ir a la tienda</button></div>`; $("ir-t").onclick=()=>ver("tienda"); return; }
+  const c = calcular();
+  const lista = [...AGENCIAS.keys()].sort((x,y)=> (st.modo==="a" ? AGENCIAS[x].a-AGENCIAS[y].a : AGENCIAS[x].m-AGENCIAS[y].m));
+  v.innerHTML = `
+  <div class="panel"><h2>Tu carrito</h2>
+    ${carrito.map((i,ix)=>{const p=TODOS[i.asin];return `<div class="item"><img src="${p.img}" alt=""><div><div class="t" style="font-size:13px">${esc(p.t)}</div><div class="muted">${i.c} × ${usd(p.p)} · ${p.lb} lb c/u</div></div><button type="button" data-quitar="${ix}">Quitar</button></div>`}).join("")}
+  </div>
+  <div class="panel"><h2>1. ¿Cómo lo traemos?</h2>
+    <div class="opts">
+      <button type="button" data-modo="a" class="${st.modo==="a"?"on":""}">Aéreo (rápido)</button>
+      <button type="button" data-modo="m" class="${st.modo==="m"?"on":""}">Marítimo (barato)</button>
+    </div>
+    <h2>2. Elegí la agencia</h2>
+    <div class="muted">Ordenadas de la más barata a la más cara para tu carrito de ${c.libras} lb. Aún sin reseñas en la plataforma.</div>
+    <div class="agencias">${lista.map(ix=>{const a=AGENCIAS[ix]; const tar = st.modo==="a"?a.a:a.m; return `<div class="ag ${ix===st.ag?"sel":""}" data-ag="${ix}" role="button" tabindex="0">
+        <input type="radio" name="ag" ${ix===st.ag?"checked":""} tabindex="-1" aria-label="${a.n}">
+        <div><div class="n">${a.n}</div><div class="muted">${usd(tar)} por libra · ${st.modo==="a"?a.ta:a.tm}</div></div>
+        <div class="precio">${usd(tar*c.libras)}</div></div>`}).join("")}</div>
+    <h2>3. ¿Cómo lo recibís?</h2>
+    <div class="opts">
+      <button type="button" data-ent="retiro" class="${st.entrega==="retiro"?"on":""}">Lo retiro en la agencia</button>
+      <button type="button" data-ent="delivery" class="${st.entrega==="delivery"?"on":""}">Delivery a mi casa</button>
+    </div>
+    ${st.entrega==="delivery"?`<label class="muted">Zona <select id="zona">${ZONAS.map((z,i)=>`<option value="${i}" ${i===st.zona?"selected":""}>${z[0]} · ${usd(z[1])}</option>`).join("")}</select></label>`:""}
+  </div>
+  <div class="panel"><h2>Resumen</h2>
+    <div class="fila"><span>Productos (precio de Amazon)</span><span>${usd(c.producto)}</span></div>
+    <div class="fila"><span>Envío ${st.modo==="a"?"aéreo":"marítimo"} · ${c.libras} lb · ${AGENCIAS[st.ag].n}</span><span>${usd(c.flete)}</span></div>
+    <div class="fila"><span>Cargo de servicio (7%, mínimo US$5, a definir)</span><span>${usd(c.servicio)}</span></div>
+    <div class="fila"><span>Delivery</span><span>${c.delivery?usd(c.delivery):"Retiro en agencia"}</span></div>
+    <div class="fila total"><span>Total puesto en Nicaragua</span><span>${usd(c.total)}</span></div>
+    <div class="muted">Las libras se estiman con caja y se redondean a libra entera. Si al pesarlo en Miami pesa menos, te devolvemos la diferencia o queda como saldo a favor. Si pesa 1 libra más, no pagás nada extra; desde 2 libras más, se cobra la diferencia.</div>
+    <button class="pri" type="button" id="pagar">Pagar ${usd(c.total)}</button>
+  </div>`;
+  v.querySelectorAll("[data-quitar]").forEach(b=>b.onclick=()=>{carrito.splice(+b.dataset.quitar,1);contar();pintarCarrito();});
+  v.querySelectorAll("[data-modo]").forEach(b=>b.onclick=()=>{st.modo=b.dataset.modo;pintarCarrito();});
+  v.querySelectorAll("[data-ag]").forEach(b=>{const f=()=>{st.ag=+b.dataset.ag;pintarCarrito();}; b.onclick=f; b.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();f();}};});
+  v.querySelectorAll("[data-ent]").forEach(b=>b.onclick=()=>{st.entrega=b.dataset.ent;pintarCarrito();});
+  if($("zona")) $("zona").onchange=e=>{st.zona=+e.target.value;pintarCarrito();};
+  $("pagar").onclick=()=>{ pintarPedido(true); ver("pedido"); };
+}
+
+function pintarPedido(recien){
+  const hayCarrito = carrito.length>0;
+  const c = hayCarrito ? calcular() : null;
+  const ag = AGENCIAS[st.ag];
+  const pasos = [
+    ["Pago recibido","28 sep, 10:15 a. m."],
+    ["Comprado en Amazon","28 sep, 11:02 a. m. · Pedido de Amazon 114-XXXXXXX"],
+    ["Recibido en Miami por "+ag.n,"Peso real: 2.3 lb → se cobran 3 lb. Estimado 2 lb: la libra de más la absorben la agencia y la plataforma."],
+    [st.modo==="a"?"En vuelo a Managua":"En barco a Nicaragua","Salida estimada: 30 sep"],
+    ["En aduana","La agencia hace el desaduanaje"],
+    [st.entrega==="delivery"?"En camino a tu casa":"Listo para retirar", st.entrega==="delivery"?ZONAS[st.zona][0]:"En la sucursal de "+ag.n],
+    ["Entregado",""]
+  ];
+  const actual = 3;
+  $("v-pedido").innerHTML = `<div class="panel">
+    ${recien?`<div class="aviso" style="color:var(--ok)">Pago simulado. Así vería el cliente su pedido después de pagar.</div>`:""}
+    <h2>Pedido #N-00123 ${c?"· "+usd(c.total):""}</h2>
+    <div class="muted">Ejemplo de seguimiento. El avance se marca con lo que reporta la agencia.</div>
+    <ol class="pasos">${pasos.map((p,i)=>`<li class="${i<actual?"hecho":i===actual?"ahora":""}"><span></span><div><b>${p[0]}</b>${p[1]?`<small>${p[1]}</small>`:""}</div></li>`).join("")}</ol>
+  </div>`;
+}
+
+// tema claro / oscuro
+function temaActual(){ const d=document.documentElement.dataset.theme; return d || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); }
+function etiquetaTema(){ $("tema").textContent = temaActual()==="dark" ? "Tema claro" : "Tema oscuro"; }
+$("tema").onclick=()=>{ document.documentElement.dataset.theme = temaActual()==="dark" ? "light" : "dark"; etiquetaTema(); };
+etiquetaTema();
+// eventos
+$("nav-tienda").onclick=()=>ver("tienda");
+$("nav-carrito").onclick=()=>{pintarCarrito();ver("carrito");};
+$("nav-pedido").onclick=()=>{pintarPedido(false);ver("pedido");};
+$("t-amazon").onclick=()=>{$("t-amazon").classList.add("on");$("t-ebay").classList.remove("on");$("amazon-box").hidden=false;$("ebay-msg").hidden=true;};
+$("t-ebay").onclick=()=>{$("t-ebay").classList.add("on");$("t-amazon").classList.remove("on");$("amazon-box").hidden=true;$("ebay-msg").hidden=false;};
+$("f-buscar").addEventListener("submit",e=>{e.preventDefault(); const q=$("q").value.trim(); if(q) buscar(q);});
+document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{$("q").value=b.textContent;buscar(b.dataset.q);});
+document.addEventListener("click",e=>{const b=e.target.closest(".prod"); if(b) abrir(b.dataset.asin);});
+pintarGrid($("ofertas"), D.ofertas);
+buscar("audifonos");
+</script>
+
+</body>
+</html>
