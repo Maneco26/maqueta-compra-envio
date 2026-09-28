@@ -260,7 +260,7 @@ function pintarPedido(recien){
     ${recien?`<div class="aviso" style="color:var(--ok)">Pago simulado. Así vería el cliente su pedido después de pagar.</div>`:""}
     <h2>Pedido #N-00123 ${c?"· "+usd(c.total):""}</h2>
     <div class="muted">Ejemplo de seguimiento. El avance se marca con lo que reporta la agencia.</div>
-    <ol class="pasos">${pasos.map((p,i)=>`<li class="${i<actual?"hecho":i===actual?"ahora":""}"><span></span><div><b>${p[0]}</b>${p[1]?`<small>${p[1]}</small>`:""}</div></li>`).join("")}</ol>
+    <ol class="pasos">${pasos.map((p,i)=>`<li class="${i<actual?"hecho":i===actual?"ahora":""}"><div><b>${p[0]}</b>${p[1]?`<small>${p[1]}</small>`:""}</div></li>`).join("")}</ol>
   </div>`;
 }
 
